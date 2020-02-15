@@ -113,8 +113,7 @@ RUN mkdir -p $FONTS_DIR \
   && curl -sL $SIMSUN_URL | gzip -d > "$FONTS_DIR/simsun.ttc" \
   && echo "Fonts: simsun.ttc installed"
 
-# DO NOT USE pkg-wine/*
-COPY ./pkg-wine/ /
+COPY ./pkg-wine/* /
 RUN chown -R user:group /home/user
 
 RUN su user -c 'WINEARCH=win32 /usr/bin/wine wineboot' \

@@ -3,7 +3,7 @@
 set -eo pipefail
 [[ $DEBUG == true ]] && set -x
 
-wine explorer /desktop=windows,${VNC_GEOMETRY} notepad
+tail /dev/null -F
 
 sleep 1
 
