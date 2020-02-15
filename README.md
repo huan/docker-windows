@@ -8,8 +8,9 @@ Run Windows Application in Linux Docker Image
 
 ## Features
 
-1. Consume hostie service
-1. Provide hostie service
+1. Run Microsoft Windows Application Under GNU/Linux
+1. GUI with Remote Desktop Enabled
+1. Fully Dockerized
 
 ## Usage
 
@@ -38,7 +39,6 @@ wine explorer /desktop=arbname,1920x1200 "C:\...\...\application.exe"
 VNC Works like a charm in Docker Container with Web Client.
 
 1. [TigerVNC](https://tigervnc.org/) - Tiger VNC (Virtual Network Computing) is a client/server application that allows users to launch and interact with graphical applications on remote machines.
-1. [Websockify](https://github.com/novnc/websockify) - Websockify is a WebSocket to TCP proxy/bridge. This allows a browser to connect to any application/server/service. Implementations in Python, C, Node.js and Ruby.
 1. [NoVNC](https://github.com/novnc/noVNC) - VNC Client Web Application.
 
 ### v0.0.1 (Feb 13, 2020)
