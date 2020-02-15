@@ -1,2 +1,3 @@
 #!/usr/bin/with-contenv bash
+
 sudo -Hu user /usr/bin/vncserver "${DISPLAY:-:0}" -fg -geometry "${VNC_GEOMETRY:-800x600}" -depth "${VNC_DEPTH:-16}"

@@ -1,3 +1,0 @@
-#!/usr/bin/with-contenv bash
-
-sudo -Hu user xterm
