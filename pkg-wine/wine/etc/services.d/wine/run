@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bash
+
+set -eo pipefail
+[[ $DEBUG == true ]] && set -x
+
+wine explorer /desktop=windows,${VNC_GEOMETRY} notepad
+
+sleep 1
+
+wine wineboot --kill
+wineserver -k9

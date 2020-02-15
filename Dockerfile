@@ -38,6 +38,7 @@ RUN apt-get update \
     software-properties-common \
     sudo \
     tzdata \
+    wget \
     xorg \
   && apt-get autoremove -y \
   && apt-get clean \
@@ -62,50 +63,73 @@ EXPOSE 80/tcp
 # TigerVNC
 EXPOSE 5900/tcp
 
-COPY ./pkg/vnc/* /
+COPY ./pkg-vnc/* /
+# RUN chown -R user:group /home/user
 
 #
 # Stage 2: Wine
 #
 
-# FROM VNC
+FROM VNC
 
-# ENV \
-#   LANG=zh_CN.UTF-8 \
-#   LC_ALL=zh_CN.UTF-8 \
-#   TZ=Asia/Shanghai
+RUN curl -sL https://dl.winehq.org/wine-builds/winehq.key | apt-key add - \
+  && apt-add-repository -y https://dl.winehq.org/wine-builds/ubuntu \
+  && dpkg --add-architecture i386 \
+  && echo 'WineHQ Repository added'
 
-# RUN curl -sL https://dl.winehq.org/wine-builds/winehq.key | apt-key add - \
-#   && apt-add-repository -y https://dl.winehq.org/wine-builds/ubuntu \
-#   && dpkg --add-architecture i386 \
-#   && curl -J -L -o /usr/local/bin/winetricks https://github.com/Winetricks/winetricks/raw/master/src/winetricks \
-#   && chmod 755 /usr/local/bin/winetricks \
-#   && curl -J -L -o /usr/share/bash-completion/completions/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks.bash-completion \
-#   && echo 'Wine Installed'
+RUN curl -sL https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/Release.key | apt-key add - \
+  && sudo apt-add-repository 'deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/ ./' \
+  && echo 'Wine: Libfaudio Repository added '
 
-# RUN apt-get update \
-#   && apt-get install -y \
-#     winehq-devel \
-#     \
-#     cabextract \
-#     unzip \
-#     language-pack-zh-hans \
-#     tzdata \
-#     ttf-wqy-microhei \
-#   && apt-get autoremove -y \
-#   && apt-get clean \
-#   && rm -rf /var/lib/apt/lists
+RUN apt-get install --install-recommends -y \
+    winehq-stable \
+    wine-stable \
+    wine-stable-i386 \
+    wine-stable-amd64 \
+    libfaudio0:i386 \
+    \
+    cabextract \
+    unzip \
+    language-pack-zh-hans \
+    ttf-wqy-microhei \
+  && apt-get autoremove -y \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists
 
-# COPY ./pkg/wine/* /
+RUN curl -sL -o /usr/local/bin/winetricks https://github.com/Winetricks/winetricks/raw/master/src/winetricks \
+  && chmod 755 /usr/local/bin/winetricks \
+  && curl -sL -o /usr/share/bash-completion/completions/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks.bash-completion \
+  && echo "Wine: winetricks installed"
 
-# RUN su user -c 'WINEARCH=win32 /usr/bin/wine wineboot' \
-#   && su user -c 'wineboot' \
-#   && su user -c '/usr/local/bin/winetricks -q win7' \
-#   && su user -c '/usr/local/bin/winetricks -q /tmp/winhttp_2ksp4.verb' \
-#   && su user -c '/usr/local/bin/winetricks -q msscript' \
-#   && su user -c '/usr/local/bin/winetricks -q fontsmooth=rgb' \
-#   && curl -J -L -o /tmp/simsun.zip https://dlsec.cqp.me/docker-simsun \
-#   && mkdir -p /home/user/.wine/drive_c/windows/Fonts \
-#   && unzip /tmp/simsun.zip -d /home/user/.wine/drive_c/windows/Fonts \
-#   && chown -R user:group /home/user/.wine \
-#   && rm -rf /home/user/.cache /tmp/*
+ARG LUNA_DIR=/home/user/.wine/drive_c/windows/Resources/Themes/luna/
+ARG LUNA_URL=https://github.com/huan/docker-windows/releases/download/v0.1/luna.msstyles.gz
+RUN mkdir -p $LUNA_DIR \
+  && curl -sL $LUNA_URL | gzip -d > "$LUNA_DIR/luna.msstyles" \
+  && echo 'Theme: luna.msstyles installed'
+
+ARG FONTS_DIR=/home/user/.wine/drive_c/windows/Fonts/
+ARG SIMSUN_URL=https://github.com/huan/docker-windows/releases/download/v0.1/simsun.ttc.gz
+RUN mkdir -p $FONTS_DIR \
+  && curl -sL $SIMSUN_URL | gzip -d > "$FONTS_DIR/simsun.ttc" \
+  && echo "Fonts: simsun.ttc installed"
+
+# DO NOT USE pkg-wine/*
+COPY ./pkg-wine/ /
+RUN chown -R user:group /home/user
+
+RUN su user -c 'WINEARCH=win32 /usr/bin/wine wineboot' \
+  && su user -c '/usr/bin/wine regedit.exe /s /home/user/tmp/windows.reg' \
+  && su user -c 'wineboot' \
+  && echo 'quiet=on' > /etc/wgetrc \
+  && su user -c '/usr/local/bin/winetricks -q win7' \
+  && su user -c '/usr/local/bin/winetricks -q /home/user/tmp/winhttp_2ksp4.verb' \
+  && su user -c '/usr/local/bin/winetricks -q msscript' \
+  && su user -c '/usr/local/bin/winetricks -q fontsmooth=rgb' \
+  \
+  && rm -rf /etc/wgetrc /home/user/.cache/ /home/user/tmp/* \
+  && echo "Wine: initialized"
+
+ENV \
+  LANG=zh_CN.UTF-8 \
+  LC_ALL=zh_CN.UTF-8 \
+  TZ=Asia/Shanghai
