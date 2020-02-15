@@ -1,6 +1,8 @@
-# docker-windows
+# docker-windows ![Docker](https://github.com/huan/docker-windows/workflows/Docker/badge.svg)
 
-Run Windows Application in Linux Docker Image
+[![Wine](https://img.shields.io/badge/Powered%20By-Wine-red.svg)](https://www.winehq.org/)
+
+Run Windows Applications in a Linux Docker Container
 
 ![Wine](https://huan.github.io/docker-windows/images/wine.png)
 
@@ -8,19 +10,21 @@ Run Windows Application in Linux Docker Image
 
 ## Features
 
-1. Run Microsoft Windows Application Under GNU/Linux
-1. GUI with Remote Desktop Enabled
-1. Fully Dockerized
+1. Dockerize Microsoft Windows Applications on Linux
+1. GUI with Remote Desktop Enabled (optional, not required)
+
+## Examples
+
+To be added.
 
 ## Usage
 
-winetricks riched20
+To be writen.
 
+winetricks riched20
 http://ubuntuhandbook.org/index.php/2020/01/install-wine-5-0-stable-ubuntu-18-04-19-10/
 https://tecadmin.net/install-wine-on-ubuntu/
 https://wiki.winehq.org/Ubuntu
-
-
 wine explorer /desktop=arbname,1920x1200 "C:\...\...\application.exe"
 
 ## Links
@@ -53,6 +57,6 @@ VNC Works like a charm in Docker Container with Web Client.
 
 ## Copyright & License
 
-* Code & Docs © 2018-now Huan LI \<zixia@zixia.net\>
+* Code & Docs © 2020-now Huan LI \<zixia@zixia.net\>
 * Code released under the Apache-2.0 License
 * Docs released under Creative Commons
