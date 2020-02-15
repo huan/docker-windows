@@ -1,4 +1,17 @@
-# docker-dll
+# docker-windows
+
+Run Windows Application in Linux Docker Image
+
+![Wine](https://huan.github.io/docker-windows/images/wine.png)
+
+> Credit: [How To Run Windows Applications And Games On Linux](https://www.ostechnix.com/run-windows-games-softwares-ubuntu-16-04/)
+
+## Features
+
+1. Consume hostie service
+1. Provide hostie service
+
+## Usage
 
 winetricks riched20
 
@@ -8,20 +21,6 @@ https://wiki.winehq.org/Ubuntu
 
 
 wine explorer /desktop=arbname,1920x1200 "C:\...\...\application.exe"
-
-
-![vs](https://huan.github.io/docker-wine-visual-studio-2015/images/vs.png)
-
-
-
-## Features
-
-1. Consume hostie service
-1. Provide hostie service
-
-## Usage
-
-TBW
 
 ## Links
 
@@ -34,7 +33,15 @@ TBW
 
 ### master
 
-### v0.0.1 (Jun 2018)
+### v0.1 (Feb 15, 2020)
+
+VNC Works like a charm in Docker Container with Web Client.
+
+1. [TigerVNC](https://tigervnc.org/) - Tiger VNC (Virtual Network Computing) is a client/server application that allows users to launch and interact with graphical applications on remote machines.
+1. [Websockify](https://github.com/novnc/websockify) - Websockify is a WebSocket to TCP proxy/bridge. This allows a browser to connect to any application/server/service. Implementations in Python, C, Node.js and Ruby.
+1. [NoVNC](https://github.com/novnc/noVNC) - VNC Client Web Application.
+
+### v0.0.1 (Feb 13, 2020)
 
 1. Inited.
 
