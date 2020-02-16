@@ -29,6 +29,7 @@ RUN apt-get update \
     \
       git \
       openssh-client \
+      openssh-server \
       vim \
     \
     apt-transport-https \
@@ -83,11 +84,12 @@ RUN curl -sL https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/
 
 RUN apt-get install --install-recommends -y \
     winehq-stable \
+    winetricks \
+    \
     wine-stable \
     wine-stable-i386 \
     wine-stable-amd64 \
     libfaudio0:i386 \
-    \
     cabextract \
     unzip \
     language-pack-zh-hans \
@@ -96,10 +98,10 @@ RUN apt-get install --install-recommends -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists
 
-RUN curl -sL -o /usr/local/bin/winetricks https://github.com/Winetricks/winetricks/raw/master/src/winetricks \
-  && chmod 755 /usr/local/bin/winetricks \
-  && curl -sL -o /usr/share/bash-completion/completions/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks.bash-completion \
-  && echo "Wine: winetricks installed"
+# RUN curl -sL -o /usr/local/bin/winetricks https://github.com/Winetricks/winetricks/raw/master/src/winetricks \
+#   && chmod 755 /usr/local/bin/winetricks \
+#   && curl -sL -o /usr/share/bash-completion/completions/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks.bash-completion \
+#   && echo "Wine: winetricks installed"
 
 ARG LUNA_DIR=/home/user/.wine/drive_c/windows/Resources/Themes/luna/
 ARG LUNA_URL=https://github.com/huan/docker-windows/releases/download/v0.1/luna.msstyles.gz
@@ -116,14 +118,24 @@ RUN mkdir -p $FONTS_DIR \
 COPY ./pkg-wine/* /
 RUN chown -R user:group /home/user
 
+# vcrun6
+# winetricks vcrun2013
+# winetricks vcrun2015
+# winetricks vcrun2017
+  # && su user -c 'winetricks -q corefonts' \
+
+# winetricks dbghelp
+# winetricks wininet # WinHttpGetIEProxyConfigForCurrentUser failed
+
 RUN su user -c 'WINEARCH=win32 /usr/bin/wine wineboot' \
-  && su user -c '/usr/bin/wine regedit.exe /s /home/user/tmp/windows.reg' \
+  && su user -c 'wine regedit.exe /s /home/user/tmp/windows.reg' \
   && su user -c 'wineboot' \
   && echo 'quiet=on' > /etc/wgetrc \
-  && su user -c '/usr/local/bin/winetricks -q win7' \
-  && su user -c '/usr/local/bin/winetricks -q /home/user/tmp/winhttp_2ksp4.verb' \
-  && su user -c '/usr/local/bin/winetricks -q msscript' \
-  && su user -c '/usr/local/bin/winetricks -q fontsmooth=rgb' \
+  && su user -c 'winetricks -q win7' \
+  && su user -c 'winetricks -q /home/user/tmp/winhttp_2ksp4.verb' \
+  && su user -c 'winetricks -q msscript' \
+  && su user -c 'winetricks -q fontsmooth=rgb' \
+  && su user -c 'winetricks -q riched20' \
   \
   && rm -rf /etc/wgetrc /home/user/.cache/ /home/user/tmp/* \
   && echo "Wine: initialized"

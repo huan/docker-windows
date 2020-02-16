@@ -1,4 +1,4 @@
-# docker-windows ![Docker](https://github.com/huan/docker-windows/workflows/Docker/badge.svg)
+# docker-windows [![Docker](https://github.com/huan/docker-windows/workflows/Docker/badge.svg)](https://github.com/huan/docker-windows/actions?query=workflow%3ADocker)
 
 [![dockeri.co](https://dockeri.co/image/zixia/windows)](https://hub.docker.com/r/zixia/windows/)
 
@@ -6,12 +6,12 @@ Run Windows Applications in a Linux Docker Container
 
 ![Wine](https://huan.github.io/docker-windows/images/wine.png)
 
-> Credit: [How To Run Windows Applications And Games On Linux](https://www.ostechnix.com/run-windows-games-softwares-ubuntu-16-04/)
+> Image Credit: [How To Run Windows Applications And Games On Linux](https://www.ostechnix.com/run-windows-games-softwares-ubuntu-16-04/)
 
 ## Features
 
 1. Dockerize Microsoft Windows Applications on Linux
-1. GUI with Remote Desktop Enabled
+1. GUI Enabled via Remote Desktop in Web Browser
 
 ## Examples
 
@@ -33,12 +33,6 @@ To be added.
 
 To be writen.
 
-winetricks riched20
-http://ubuntuhandbook.org/index.php/2020/01/install-wine-5-0-stable-ubuntu-18-04-19-10/
-https://tecadmin.net/install-wine-on-ubuntu/
-https://wiki.winehq.org/Ubuntu
-
-
 ## Links
 
 ### Development Tools
@@ -51,6 +45,9 @@ https://wiki.winehq.org/Ubuntu
 
 - [Wine HQ - Ubuntu Installing WineHQ packages](https://wiki.winehq.org/Ubuntu)
 - [How to Install Wine 5.0 Stable in Ubuntu 18.04, 19.10](http://ubuntuhandbook.org/index.php/2020/01/install-wine-5-0-stable-ubuntu-18-04-19-10/)
+- [PlayOnLinux Explained: Components Part 1](https://www.gamersonlinux.com/forum/threads/playonlinux-explained-components-part-1.273/)
+- [Wine HQ - Cheat Engine - crashes attaching to app?](https://forum.winehq.org/viewtopic.php?t=33248&p=125564)
+- [BSMG Linux Modding Guide](https://bsmg.wiki/modding/linux.html)
 
 ## History
 
