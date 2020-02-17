@@ -1,0 +1,14 @@
+w_metadata winhttp_2ksp4 dlls \
+    title="MS Windows HTTP Services" \
+    publisher="Microsoft" \
+    year="2005" \
+    media="download" \
+    file1="../win2ksp4/W2KSP4_EN.EXE" \
+    installed_file1="$W_SYSTEM32_DLLS_WIN/winhttp.dll"
+
+load_winhttp_2ksp4()
+{
+    helper_win2ksp4 i386/new/winhttp.dl_
+    w_try_cabextract --directory="$W_SYSTEM32_DLLS" "$W_TMP"/i386/new/winhttp.dl_
+    w_override_dlls native,builtin winhttp
+}

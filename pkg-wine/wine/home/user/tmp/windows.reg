@@ -1,0 +1,213 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Wine\Fonts\Replacements]
+"Arial Unicode MS"="simsun"
+"Batang"="simsun"
+"BatangChe"="simsun"
+"DFKai-SB"="simsun"
+"Dotum"="simsun"
+"DotumChe"="simsun"
+"FangSong"="simsun"
+"Gulim"="simsun"
+"GulimChe"="simsun"
+"KaiTi"="simsun"
+"Microsoft JhengHei"="simsun"
+"Microsoft YaHei"="simsun"
+"MingLiU"="simsun"
+"MS Gothic"="simsun"
+"MS Mincho"="simsun"
+"MS PGothic"="simsun"
+"MS PMincho"="simsun"
+"MS UI Gothic"="simsun"
+"NSimSun"="simsun"
+"PMingLiU"="simsun"
+"SimHei"="simsun"
+"SimKai"="simsun"
+"SimSun"="simsun"
+
+[HKEY_CURRENT_USER\Control Panel\Colors]
+"ActiveBorder"="212 208 200"
+"ActiveTitle"="0 84 227"
+"AppWorkSpace"="128 128 128"
+"Background"="0 78 152"
+"ButtonAlternateFace"="181 181 181"
+"ButtonDkShadow"="113 111 100"
+"ButtonFace"="236 233 216"
+"ButtonHilight"="255 255 255"
+"ButtonLight"="241 239 226"
+"ButtonShadow"="172 168 153"
+"ButtonText"="0 0 0"
+"GradientActiveTitle"="61 149 255"
+"GradientInactiveTitle"="157 185 235"
+"GrayText"="172 168 153"
+"Hilight"="49 106 197"
+"HilightText"="255 255 255"
+"HotTrackingColor"="0 0 200"
+"InactiveBorder"="212 208 200"
+"InactiveTitle"="122 150 223"
+"InactiveTitleText"="216 228 248"
+"InfoText"="0 0 0"
+"InfoWindow"="255 255 225"
+"Menu"="255 255 255"
+"MenuBar"="236 233 216"
+"MenuHilight"="49 106 197"
+"MenuText"="0 0 0"
+"Scrollbar"="212 208 200"
+"TitleText"="255 255 255"
+"Window"="255 255 255"
+"WindowFrame"="0 0 0"
+"WindowText"="0 0 0"
+
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"ActiveWndTrackTimeout"=dword:00000000
+"BlockSendInputResets"="0"
+"CaretWidth"=dword:00000001
+"ClickLockTime"=dword:000004B0
+"DoubleClickHeight"="4"
+"DoubleClickWidth"="4"
+"DragFullWindows"="0"
+"DragHeight"="4"
+"DragWidth"="4"
+"FocusBorderHeight"=dword:00000001
+"FocusBorderWidth"=dword:00000001
+"FontSmoothing"="2"
+"FontSmoothingGamma"=dword:00000000
+"FontSmoothingOrientation"=dword:00000001
+"FontSmoothingType"=dword:00000001
+"ForegroundFlashCount"=dword:00000003
+"ForegroundLockTimeout"=dword:00000000
+"IconTitleWrap"="1"
+"LowPowerActive"="0"
+"MenuShowDelay"="400"
+"UserPreferencesMask"=hex:30,00,02,80,10,00,00,00
+"Wallpaper"=""
+"WheelScrollChars"="3"
+"WheelScrollLines"="3"
+
+[HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics]
+"BorderWidth"="-15"
+"CaptionHeight"="-270"
+"CaptionWidth"="-270"
+"IconSpacing"="-1125"
+"IconTitleWrap"="1"
+"IconVerticalSpacing"="-1125"
+"MenuHeight"="-270"
+"MenuWidth"="-270"
+"PaddedBorderWidth"="0"
+"ScrollHeight"="-240"
+"ScrollWidth"="-240"
+"SmCaptionHeight"="-225"
+"SmCaptionWidth"="-225"
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ThemeManager]
+"ColorName"="NormalColor"
+"DllName"="C:\\windows\\Resources\\Themes\\luna\\luna.msstyles"
+"FlatMenu"=dword:00000000
+"GradientCaption"=dword:00000001
+"IconTitleFont"=hex:F4,FF,FF,FF,00,00,00,00,00,00,00,00,00,00,00,00,90,01,00,00,\
+  00,00,00,86,00,00,00,22,4D,00,53,00,20,00,53,00,68,00,65,00,\
+  6C,00,6C,00,20,00,44,00,6C,00,67,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00
+"NonClientMetrics"=hex:F8,01,00,00,01,00,00,00,10,00,00,00,10,00,00,00,12,00,00,00,\
+  12,00,00,00,F4,FF,FF,FF,00,00,00,00,00,00,00,00,00,00,00,00,\
+  BC,02,00,00,00,00,00,86,00,00,00,22,4D,00,53,00,20,00,53,00,\
+  68,00,65,00,6C,00,6C,00,20,00,44,00,6C,00,67,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,0F,00,00,00,\
+  10,00,00,00,F4,FF,FF,FF,00,00,00,00,00,00,00,00,00,00,00,00,\
+  90,01,00,00,00,00,00,86,00,00,00,22,4D,00,53,00,20,00,53,00,\
+  68,00,65,00,6C,00,6C,00,20,00,44,00,6C,00,67,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,12,00,00,00,\
+  12,00,00,00,F4,FF,FF,FF,00,00,00,00,00,00,00,00,00,00,00,00,\
+  90,01,00,00,00,00,00,86,00,00,00,22,4D,00,53,00,20,00,53,00,\
+  68,00,65,00,6C,00,6C,00,20,00,44,00,6C,00,67,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,F4,FF,FF,FF,\
+  00,00,00,00,00,00,00,00,00,00,00,00,90,01,00,00,00,00,00,86,\
+  00,00,00,22,4D,00,53,00,20,00,53,00,68,00,65,00,6C,00,6C,00,\
+  20,00,44,00,6C,00,67,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,F4,FF,FF,FF,00,00,00,00,00,00,00,00,\
+  00,00,00,00,90,01,00,00,00,00,00,86,00,00,00,22,4D,00,53,00,\
+  20,00,53,00,68,00,65,00,6C,00,6C,00,20,00,44,00,6C,00,67,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00
+"SizeName"="NormalSize"
+"ThemeActive"="1"
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ThemeManager\Control Panel]
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ThemeManager\Control Panel\Colors]
+"ActiveBorder"="212 208 200"
+"ActiveTitle"="10 36 106"
+"AppWorkSpace"="128 128 128"
+"Background"="58 110 165"
+"ButtonAlternateFace"="181 181 181"
+"ButtonDkShadow"="64 64 64"
+"ButtonFace"="212 208 200"
+"ButtonHilight"="255 255 255"
+"ButtonLight"="212 208 200"
+"ButtonShadow"="128 128 128"
+"ButtonText"="0 0 0"
+"GradientActiveTitle"="166 202 240"
+"GradientInactiveTitle"="192 192 192"
+"GrayText"="128 128 128"
+"Hilight"="10 36 106"
+"HilightText"="255 255 255"
+"HotTrackingColor"="0 0 200"
+"InactiveBorder"="212 208 200"
+"InactiveTitle"="128 128 128"
+"InactiveTitleText"="212 208 200"
+"InfoText"="0 0 0"
+"InfoWindow"="255 255 225"
+"Menu"="212 208 200"
+"MenuBar"="212 208 200"
+"MenuHilight"="10 36 106"
+"MenuText"="0 0 0"
+"Scrollbar"="212 208 200"
+"TitleText"="255 255 255"
+"Window"="255 255 255"
+"WindowFrame"="0 0 0"
+"WindowText"="0 0 0"
+
+[HKEY_CURRENT_USER\Software\Wine]
+
+[HKEY_CURRENT_USER\Software\Wine\Temporary System Parameters]
+
+[HKEY_CURRENT_USER\Software\Wine\Temporary System Parameters\Control Panel]
+
+[HKEY_CURRENT_USER\Software\Wine\Temporary System Parameters\Control Panel\Colors]
+"ActiveBorder"="212 208 200"
+"ActiveTitle"="0 84 227"
+"AppWorkSpace"="128 128 128"
+"Background"="0 78 152"
+"ButtonAlternateFace"="181 181 181"
+"ButtonDkShadow"="113 111 100"
+"ButtonFace"="236 233 216"
+"ButtonHilight"="255 255 255"
+"ButtonLight"="241 239 226"
+"ButtonShadow"="172 168 153"
+"ButtonText"="0 0 0"
+"GradientActiveTitle"="61 149 255"
+"GradientInactiveTitle"="157 185 235"
+"GrayText"="172 168 153"
+"Hilight"="49 106 197"
+"HilightText"="255 255 255"
+"HotTrackingColor"="0 0 200"
+"InactiveBorder"="212 208 200"
+"InactiveTitle"="122 150 223"
+"InactiveTitleText"="216 228 248"
+"InfoText"="0 0 0"
+"InfoWindow"="255 255 225"
+"Menu"="255 255 255"
+"MenuBar"="236 233 216"
+"MenuHilight"="49 106 197"
+"MenuText"="0 0 0"
+"Scrollbar"="212 208 200"
+"TitleText"="255 255 255"
+"Window"="255 255 255"
+"WindowFrame"="0 0 0"
+"WindowText"="0 0 0"

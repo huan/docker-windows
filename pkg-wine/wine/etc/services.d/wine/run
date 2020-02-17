@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bash
+
+set -eo pipefail
+[[ $DEBUG == true ]] && set -x
+
+tail /dev/null -F
+
+sleep 1
+
+wine wineboot --kill
+wineserver -k9
