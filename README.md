@@ -2,7 +2,7 @@
 
 [![dockeri.co](https://dockeri.co/image/zixia/windows)](https://hub.docker.com/r/zixia/windows/)
 
-Run Windows Applications in a Linux Docker Container
+Run Windows GUI Applications in a Linux Docker Container
 
 ![Wine](https://huan.github.io/docker-windows/images/wine.png)
 
