@@ -42,11 +42,18 @@ RUN apt-get update \
   && apt-get clean \
   && rm -fr /tmp/*
 
+#
+# From Ubuntu 19.10, /bin is a symbol link to /usr/bin
+#   We must to use tar --dereference
+#   See: How to preserve Symbolic links with tar command in Unix/Linux
+#     https://www.golinuxhub.com/2013/12/how-to-preserve-symbolic-links-with-tar.html
+#
+
 # S6 Overlay
 RUN curl -J -L -o /tmp/s6-overlay-amd64.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-amd64.tar.gz" \
    && echo -n "Checking md5sum... " \
    && echo "$S6_OVERLAY_MD5HASH /tmp/s6-overlay-amd64.tar.gz" | md5sum -c - \
-   && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / \
+   && tar --dereference -xzf /tmp/s6-overlay-amd64.tar.gz -C / \
    && rm /tmp/s6-overlay-amd64.tar.gz
 
 ENTRYPOINT '/init'
