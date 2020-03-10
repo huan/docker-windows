@@ -21,15 +21,15 @@ To be added.
 
 ### Environment variables
 
-* **`USER_PASSWD`** - user `user` password (default: `Passw0rd`)
-* **`VNC_PASSWD`** - VNC password, max 8 chars (default: `Passw0rd`)
-* **`VNC_GEOMETRY`** - VNC geometry (default: `1600x900`)
-* **`VNC_DEPTH`** - VNC depth (default: `16`)
+- **`USER_PASSWD`** - user `user` password (default: `Passw0rd`)
+- **`VNC_PASSWD`** - VNC password, max 8 chars (default: `Passw0rd`)
+- **`VNC_GEOMETRY`** - VNC geometry (default: `1600x900`)
+- **`VNC_DEPTH`** - VNC depth (default: `16`)
 
 ### Ports
 
-* **5900** - VNC (tigervnc)
-* **80** - Web (websockify)
+- **5900** - VNC (tigervnc)
+- **80** - Web (websockify)
 
 To be writen.
 
@@ -76,6 +76,6 @@ VNC Works like a charm in Docker Container with Web Client.
 
 ## Copyright & License
 
-* Code & Docs © 2020-now Huan LI \<zixia@zixia.net\>
-* Code released under the Apache-2.0 License
-* Docs released under Creative Commons
+- Code & Docs © 2020-now Huan LI \<zixia@zixia.net\>
+- Code released under the Apache-2.0 License
+- Docs released under Creative Commons
