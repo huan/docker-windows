@@ -53,6 +53,11 @@ To be writen.
 
 ### master
 
+### v0.2 (Mar 10, 2020)
+
+1. Switch base image from `ubuntu:bionic` to `zixia/wine`
+1. Workaround [`/bin` was overwritten by `tar -C /` when extracting s6-overlay #1](https://github.com/huan/docker-windows/issues/1)
+
 ### v0.1 (Feb 15, 2020)
 
 VNC Works like a charm in Docker Container with Web Client.
