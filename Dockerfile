@@ -1,8 +1,4 @@
-
-#
-# Stage 1: VNC
-#
-FROM ubuntu:bionic as VNC
+FROM zixia/wine
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG S6_OVERLAY_VERSION=1.22.1.0
@@ -33,6 +29,7 @@ RUN apt-get update \
       vim \
     \
     apt-transport-https \
+    bash \
     ca-certificates \
     curl \
     python-numpy \
@@ -66,42 +63,6 @@ EXPOSE 5900/tcp
 
 COPY ./pkg-vnc/* /
 # RUN chown -R user:group /home/user
-
-#
-# Stage 2: Wine
-#
-
-FROM VNC
-
-RUN curl -sL https://dl.winehq.org/wine-builds/winehq.key | apt-key add - \
-  && apt-add-repository -y https://dl.winehq.org/wine-builds/ubuntu \
-  && dpkg --add-architecture i386 \
-  && echo 'WineHQ Repository added'
-
-RUN curl -sL https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/Release.key | apt-key add - \
-  && sudo apt-add-repository 'deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/ ./' \
-  && echo 'Wine: Libfaudio Repository added '
-
-RUN apt-get install --install-recommends -y \
-    winehq-stable \
-    winetricks \
-    \
-    wine-stable \
-    wine-stable-i386 \
-    wine-stable-amd64 \
-    libfaudio0:i386 \
-    cabextract \
-    unzip \
-    language-pack-zh-hans \
-    ttf-wqy-microhei \
-  && apt-get autoremove -y \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists
-
-# RUN curl -sL -o /usr/local/bin/winetricks https://github.com/Winetricks/winetricks/raw/master/src/winetricks \
-#   && chmod 755 /usr/local/bin/winetricks \
-#   && curl -sL -o /usr/share/bash-completion/completions/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks.bash-completion \
-#   && echo "Wine: winetricks installed"
 
 ARG LUNA_DIR=/home/user/.wine/drive_c/windows/Resources/Themes/luna/
 ARG LUNA_URL=https://github.com/huan/docker-windows/releases/download/v0.1/luna.msstyles.gz
