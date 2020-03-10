@@ -29,7 +29,6 @@ RUN apt-get update \
       vim \
     \
     apt-transport-https \
-    bash \
     ca-certificates \
     curl \
     python-numpy \
@@ -42,24 +41,24 @@ RUN apt-get update \
   && apt-get clean \
   && rm -fr /tmp/*
 
-#
-# From Ubuntu 19.10, /bin is a symbol link to /usr/bin
-#   We must to use tar --dereference
-#   See: How to preserve Symbolic links with tar command in Unix/Linux
-#     https://www.golinuxhub.com/2013/12/how-to-preserve-symbolic-links-with-tar.html
-#
+# Issue #1
+ARG BIN_BAK=/bin.bak
 
 # S6 Overlay
 RUN curl -J -L -o /tmp/s6-overlay-amd64.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-amd64.tar.gz" \
-   && echo -n "Checking md5sum... " \
-   && echo "$S6_OVERLAY_MD5HASH /tmp/s6-overlay-amd64.tar.gz" | md5sum -c - \
-   && tar --dereference -xzf /tmp/s6-overlay-amd64.tar.gz -C / \
-   && rm /tmp/s6-overlay-amd64.tar.gz
+  && echo -n "Checking md5sum... " \
+  && echo "$S6_OVERLAY_MD5HASH /tmp/s6-overlay-amd64.tar.gz" | md5sum -c - \
+  && mv /bin "$BIN_BAK" \
+    && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / \
+    && mv /bin/* "$BIN_BAK" \
+    && rmdir /bin \
+    && mv "$BIN_BAK" /bin \
+  && rm /tmp/s6-overlay-amd64.tar.gz
 
 ENTRYPOINT '/init'
 
-RUN groupadd group \
-  && useradd -m -g group user \
+RUN if ! getent group group; then groupadd group; fi \
+  && if ! id -u user; then useradd -m -g group user; fi \
   && chsh -s /bin/bash user \
   && echo 'user ALL=(ALL:ALL) ALL' >> /etc/sudoers
 
