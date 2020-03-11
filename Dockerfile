@@ -73,17 +73,17 @@ COPY ./pkg-vnc/* /
 ARG LUNA_DIR=/home/user/.wine/drive_c/windows/Resources/Themes/luna/
 ARG LUNA_URL=https://github.com/huan/docker-windows/releases/download/v0.1/luna.msstyles.gz
 RUN mkdir -p $LUNA_DIR \
-  && curl -sL $LUNA_URL | gzip -d > "$LUNA_DIR/luna.msstyles" \
-  && echo 'Theme: luna.msstyles installed'
+  && curl -sL $LUNA_URL | su user -c "gzip -d > '$LUNA_DIR/luna.msstyles'" \
+  && echo 'Theme: luna.msstyles Installed'
 
 ARG FONTS_DIR=/home/user/.wine/drive_c/windows/Fonts/
 ARG SIMSUN_URL=https://github.com/huan/docker-windows/releases/download/v0.1/simsun.ttc.gz
 RUN mkdir -p $FONTS_DIR \
-  && curl -sL $SIMSUN_URL | gzip -d > "$FONTS_DIR/simsun.ttc" \
-  && echo "Fonts: simsun.ttc installed"
+  && curl -sL $SIMSUN_URL | su user -c "gzip -d > '$FONTS_DIR/simsun.ttc'" \
+  && echo "Fonts: simsun.ttc Installed"
 
 COPY ./pkg-wine/* /
-RUN chown -R user:group /home/user
+# RUN chown -R user:group /home/user
 
 # vcrun6
 # winetricks vcrun2013
@@ -105,7 +105,7 @@ RUN su user -c 'WINEARCH=win32 /usr/bin/wine wineboot' \
   && su user -c 'winetricks -q riched20' \
   \
   && rm -rf /etc/wgetrc /home/user/.cache/ /home/user/tmp/* \
-  && echo "Wine: initialized"
+  && echo "Wine Initialized"
 
 ENV \
   LANG=zh_CN.UTF-8 \
