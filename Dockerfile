@@ -91,7 +91,7 @@ RUN mkdir -p $FONTS_DIR \
 RUN WINEARCH=win32 /usr/bin/wine wineboot \
   && wine regedit.exe /s /home/user/tmp/windows.reg \
   && wineboot \
-  && sudo -c 'echo "quiet=on" > /etc/wgetrc' \
+  && sudo bash -c 'echo "quiet=on" > /etc/wgetrc' \
   && winetricks -q win7 \
   && winetricks -q /home/user/tmp/winhttp_2ksp4.verb \
   && winetricks -q msscript \
