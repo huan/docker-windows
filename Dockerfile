@@ -1,4 +1,4 @@
-FROM zixia/wine
+FROM zixia/wine:5.0.0
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG S6_OVERLAY_VERSION=1.22.1.0
@@ -68,22 +68,21 @@ EXPOSE 80/tcp
 EXPOSE 5900/tcp
 
 COPY ./pkg-vnc/* /
-# RUN chown -R user:group /home/user
+
+USER user
+COPY ./pkg-wine/* /
 
 ARG LUNA_DIR=/home/user/.wine/drive_c/windows/Resources/Themes/luna/
 ARG LUNA_URL=https://github.com/huan/docker-windows/releases/download/v0.1/luna.msstyles.gz
 RUN mkdir -p $LUNA_DIR \
-  && curl -sL $LUNA_URL | su user -c "gzip -d > '$LUNA_DIR/luna.msstyles'" \
+  && curl -sL $LUNA_URL | gzip -d > "$LUNA_DIR/luna.msstyles" \
   && echo 'Theme: luna.msstyles Installed'
 
 ARG FONTS_DIR=/home/user/.wine/drive_c/windows/Fonts/
 ARG SIMSUN_URL=https://github.com/huan/docker-windows/releases/download/v0.1/simsun.ttc.gz
 RUN mkdir -p $FONTS_DIR \
-  && curl -sL $SIMSUN_URL | su user -c "gzip -d > '$FONTS_DIR/simsun.ttc'" \
+  && curl -sL $SIMSUN_URL | gzip -d > "$FONTS_DIR/simsun.ttc" \
   && echo "Fonts: simsun.ttc Installed"
-
-COPY ./pkg-wine/* /
-# RUN chown -R user:group /home/user
 
 # vcrun6
 # winetricks vcrun2013
@@ -94,15 +93,15 @@ COPY ./pkg-wine/* /
 # winetricks dbghelp
 # winetricks wininet # WinHttpGetIEProxyConfigForCurrentUser failed
 
-RUN su user -c 'WINEARCH=win32 /usr/bin/wine wineboot' \
-  && su user -c 'wine regedit.exe /s /home/user/tmp/windows.reg' \
-  && su user -c 'wineboot' \
+RUN WINEARCH=win32 /usr/bin/wine wineboot \
+  && wine regedit.exe /s /home/user/tmp/windows.reg \
+  && wineboot \
   && echo 'quiet=on' > /etc/wgetrc \
-  && su user -c 'winetricks -q win7' \
-  && su user -c 'winetricks -q /home/user/tmp/winhttp_2ksp4.verb' \
-  && su user -c 'winetricks -q msscript' \
-  && su user -c 'winetricks -q fontsmooth=rgb' \
-  && su user -c 'winetricks -q riched20' \
+  && winetricks -q win7 \
+  && winetricks -q /home/user/tmp/winhttp_2ksp4.verb \
+  && winetricks -q msscript \
+  && winetricks -q fontsmooth=rgb \
+  && winetricks -q riched20 \
   \
   && rm -rf /etc/wgetrc /home/user/.cache/ /home/user/tmp/* \
   && echo "Wine Initialized"
