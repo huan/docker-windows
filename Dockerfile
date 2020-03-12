@@ -1,4 +1,4 @@
-FROM zixia/wine:5.0.0
+FROM zixia/wine:5.0
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG S6_OVERLAY_VERSION=1.22.1.0
