@@ -35,6 +35,7 @@ RUN apt-get update \
     software-properties-common \
     sudo \
     tzdata \
+    wget \
     xorg \
   && apt-get autoremove -y \
   && apt-get clean \
@@ -90,13 +91,14 @@ RUN mkdir -p $FONTS_DIR \
 RUN WINEARCH=win32 /usr/bin/wine wineboot \
   && wine regedit.exe /s /home/user/tmp/windows.reg \
   && wineboot \
+  && sudo echo 'quiet=on' > /etc/wgetrc \
   && winetricks -q win7 \
   && winetricks -q /home/user/tmp/winhttp_2ksp4.verb \
   && winetricks -q msscript \
   && winetricks -q fontsmooth=rgb \
   && winetricks -q riched20 \
   \
-  && rm -rf /home/user/.cache/ /home/user/tmp/* \
+  && sudo rm -rf /etc/wgetrc /home/user/.cache/ /home/user/tmp/* \
   && echo "Wine Initialized"
 
 # WebSocketify & novnc
@@ -104,6 +106,7 @@ EXPOSE 80/tcp
 # TigerVNC
 EXPOSE 5900/tcp
 
+COPY [A-Z]* /
 COPY VERSION /VERSION.docker-windows
 
 ENV \
