@@ -7,7 +7,7 @@ set -x
 
 docker run \
   -ti --rm \
-  --name windows \
+  --name WindowsDev \
   -e USER_PASSWD='Passw0rd' \
   -e VNC_GEOMETRY=1600x900 \
   -e VNC_PASSWD='Passw0rd' \
