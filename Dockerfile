@@ -35,7 +35,6 @@ RUN apt-get update \
     software-properties-common \
     sudo \
     tzdata \
-    wget \
     xorg \
   && apt-get autoremove -y \
   && apt-get clean \
@@ -61,11 +60,6 @@ RUN if ! getent group group; then groupadd group; fi \
   && if ! id -u user; then useradd -m -g group user; fi \
   && chsh -s /bin/bash user \
   && echo 'user ALL=(ALL:ALL) ALL' >> /etc/sudoers
-
-# WebSocketify & novnc
-EXPOSE 80/tcp
-# TigerVNC
-EXPOSE 5900/tcp
 
 COPY ./pkg-vnc/* /
 
@@ -96,15 +90,21 @@ RUN mkdir -p $FONTS_DIR \
 RUN WINEARCH=win32 /usr/bin/wine wineboot \
   && wine regedit.exe /s /home/user/tmp/windows.reg \
   && wineboot \
-  && echo 'quiet=on' > /etc/wgetrc \
   && winetricks -q win7 \
   && winetricks -q /home/user/tmp/winhttp_2ksp4.verb \
   && winetricks -q msscript \
   && winetricks -q fontsmooth=rgb \
   && winetricks -q riched20 \
   \
-  && rm -rf /etc/wgetrc /home/user/.cache/ /home/user/tmp/* \
+  && rm -rf /home/user/.cache/ /home/user/tmp/* \
   && echo "Wine Initialized"
+
+# WebSocketify & novnc
+EXPOSE 80/tcp
+# TigerVNC
+EXPOSE 5900/tcp
+
+COPY VERSION /VERSION.docker-windows
 
 ENV \
   LANG=zh_CN.UTF-8 \
