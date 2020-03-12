@@ -60,7 +60,7 @@ ENTRYPOINT '/init'
 RUN if ! getent group group; then groupadd group; fi \
   && if ! id -u user; then useradd -m -g group user; fi \
   && chsh -s /bin/bash user \
-  && echo 'user ALL=(ALL:ALL) ALL' >> /etc/sudoers
+  && echo 'user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 COPY ./pkg-vnc/* /
 
@@ -91,7 +91,7 @@ RUN mkdir -p $FONTS_DIR \
 RUN WINEARCH=win32 /usr/bin/wine wineboot \
   && wine regedit.exe /s /home/user/tmp/windows.reg \
   && wineboot \
-  && sudo bash -c 'echo "quiet=on" > /etc/wgetrc' \
+  && sudo sh -c 'echo "quiet=on" > /etc/wgetrc' \
   && winetricks -q win7 \
   && winetricks -q /home/user/tmp/winhttp_2ksp4.verb \
   && winetricks -q msscript \
