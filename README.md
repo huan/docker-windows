@@ -57,6 +57,7 @@ To be writen.
 
 1. Switch base image from `ubuntu:bionic` to `zixia/wine:5.0.0`
 1. Workaround [`/bin` was overwritten by `tar -C /` when extracting s6-overlay #1](https://github.com/huan/docker-windows/issues/1)
+1. Enable GitHub Actions & Docker Hub Deploy
 
 ### v0.1 (Feb 15, 2020)
 
