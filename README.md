@@ -58,6 +58,10 @@ The docker image has two schema of the versioning:
 - [Wine HQ - Cheat Engine - crashes attaching to app?](https://forum.winehq.org/viewtopic.php?t=33248&p=125564)
 - [BSMG Linux Modding Guide](https://bsmg.wiki/modding/linux.html)
 
+### Similiar Projects
+
+- [Docker image that includes Wine and Winetricks for running Windows applications on Linux and macOS](https://github.com/scottyhardy/docker-wine)
+
 ## History
 
 ### master
