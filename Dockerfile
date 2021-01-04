@@ -41,7 +41,7 @@ RUN apt-get update \
   && apt-get clean \
   && rm -fr /tmp/*
 
-# Issue #1
+# Issue #1 - https://github.com/huan/docker-windows/issues/1
 ARG BIN_BAK=/bin.bak
 
 # S6 Overlay
