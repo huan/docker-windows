@@ -31,7 +31,7 @@ RUN apt-get update \
     apt-transport-https \
     ca-certificates \
     curl \
-    python-numpy \
+    python3-numpy \
     software-properties-common \
     sudo \
     tzdata \
