@@ -48,12 +48,14 @@ ARG BIN_BAK=/bin.bak
 RUN curl -J -L -o /tmp/s6-overlay-amd64.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-amd64.tar.gz" \
   && echo -n "Checking md5sum... " \
   && echo "$S6_OVERLAY_MD5HASH /tmp/s6-overlay-amd64.tar.gz" | md5sum -c - \
-  && mv /bin "$BIN_BAK" \
-    && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / \
-    && mv /bin/* "$BIN_BAK" \
-    && rmdir /bin \
-    && mv "$BIN_BAK" /bin \
-  && rm /tmp/s6-overlay-amd64.tar.gz
+  && mkdir /tmp/s6 \
+  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /tmp/s6 \
+  && mv /tmp/s6/bin "$BIN_BAK" \
+  && mv /bin/* "$BIN_BAK" \
+    && $BIN_BAK/rmdir /bin \
+    && $BIN_BAK/mv "$BIN_BAK" /bin \
+  && rm /tmp/s6-overlay-amd64.tar.gz \
+  && rm -rf /tmp/S6
 
 ENTRYPOINT '/init'
 
