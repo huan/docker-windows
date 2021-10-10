@@ -41,21 +41,13 @@ RUN apt-get update \
   && apt-get clean \
   && rm -fr /tmp/*
 
-# Issue #1 - https://github.com/huan/docker-windows/issues/1
-ARG BIN_BAK=/bin.bak
-
 # S6 Overlay
 RUN curl -J -L -o /tmp/s6-overlay-amd64.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-amd64.tar.gz" \
   && echo -n "Checking md5sum... " \
   && echo "$S6_OVERLAY_MD5HASH /tmp/s6-overlay-amd64.tar.gz" | md5sum -c - \
-  && mkdir /tmp/s6 \
-  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /tmp/s6 \
-  && mv /tmp/s6/bin "$BIN_BAK" \
-  && mv /bin/* "$BIN_BAK" \
-    && $BIN_BAK/rmdir /bin \
-    && $BIN_BAK/mv "$BIN_BAK" /bin \
-  && rm /tmp/s6-overlay-amd64.tar.gz \
-  && rm -rf /tmp/S6
+  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" \
+  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin \
+  && rm /tmp/s6-overlay-amd64.tar.gz
 
 ENTRYPOINT '/init'
 
