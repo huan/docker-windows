@@ -1,4 +1,4 @@
-FROM zixia/wine:5.0
+FROM zixia/wine:6.0
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG S6_OVERLAY_VERSION=1.22.1.0
@@ -45,8 +45,7 @@ RUN apt-get update \
 RUN curl -J -L -o /tmp/s6-overlay-amd64.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-amd64.tar.gz" \
   && echo -n "Checking md5sum... " \
   && echo "$S6_OVERLAY_MD5HASH /tmp/s6-overlay-amd64.tar.gz" | md5sum -c - \
-  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" \
-  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin \
+  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / \
   && rm /tmp/s6-overlay-amd64.tar.gz
 
 ENTRYPOINT '/init'
