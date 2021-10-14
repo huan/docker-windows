@@ -1,4 +1,4 @@
-FROM zixia/wine:5.0
+FROM zixia/wine:6.0
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG S6_OVERLAY_VERSION=1.22.1.0
@@ -31,7 +31,7 @@ RUN apt-get update \
     apt-transport-https \
     ca-certificates \
     curl \
-    python-numpy \
+    python3-numpy \
     software-properties-common \
     sudo \
     tzdata \
@@ -41,18 +41,11 @@ RUN apt-get update \
   && apt-get clean \
   && rm -fr /tmp/*
 
-# Issue #1 - https://github.com/huan/docker-windows/issues/1
-ARG BIN_BAK=/bin.bak
-
 # S6 Overlay
 RUN curl -J -L -o /tmp/s6-overlay-amd64.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-amd64.tar.gz" \
   && echo -n "Checking md5sum... " \
   && echo "$S6_OVERLAY_MD5HASH /tmp/s6-overlay-amd64.tar.gz" | md5sum -c - \
-  && mv /bin "$BIN_BAK" \
-    && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / \
-    && mv /bin/* "$BIN_BAK" \
-    && rmdir /bin \
-    && mv "$BIN_BAK" /bin \
+  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / \
   && rm /tmp/s6-overlay-amd64.tar.gz
 
 ENTRYPOINT '/init'
